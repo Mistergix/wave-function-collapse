@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba072bf4771341649ae2ec7e885e9e77, type: 3}
+  m_Name: Neighbor 9
+  m_EditorClassIdentifier: 
+  left:
+    tile: {fileID: 11400000, guid: 226230cb2e0f0e24db8e6987626aa359, type: 2}
+    id: 1
+  right:
+    tile: {fileID: 11400000, guid: 0258e147ecfc4904d862f13d40ba74e5, type: 2}
+    id: 1
