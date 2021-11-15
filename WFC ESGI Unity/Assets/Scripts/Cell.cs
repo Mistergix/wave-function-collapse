@@ -47,7 +47,18 @@ namespace ESGI.WFC
         {
             if(PossibleModules.Count == 1){return;}
 
-            var toRemove = PossibleModules.Where(filter.CheckModule).ToList();
+            var toRemove = PossibleModules.Where(module => filter.CheckModule(module, filter.MatchEquality)).ToList();
+            foreach (var module in toRemove)
+            {
+                RemoveModule(module);
+            }
+        }
+        
+        public void FilterCell(EdgeFilter filter, EdgeFilter.CheckModuleMatchFunction matchFunction)
+        {
+            if(PossibleModules.Count == 1){return;}
+
+            var toRemove = PossibleModules.Where(module => filter.CheckModule(module, matchFunction)).ToList();
             foreach (var module in toRemove)
             {
                 RemoveModule(module);
@@ -76,7 +87,7 @@ namespace ESGI.WFC
                     continue;
                 }
 
-                var edgeFilter = new EdgeFilter(i, module.edgeConnections[i], true);
+                var edgeFilter = new EdgeFilter(i, module.sockets[i], true);
                 Neighbours[i].FilterCell(edgeFilter);
             }
         }
@@ -90,7 +101,7 @@ namespace ESGI.WFC
                     continue;
                 }
 
-                if (module.edgeConnections[i] != Neighbours[i].MainModule.edgeConnections.GetNeighbour(i))
+                if (module.sockets[i] != Neighbours[i].MainModule.sockets.GetNeighbour(i))
                 {
                     Debug.LogError(
                         $"Setting module {module} would not fit already set neighbour {Neighbours[i].gameObject}!",
@@ -108,8 +119,8 @@ namespace ESGI.WFC
                     continue;
                 }
 
-                var edgeType = module.edgeConnections[j];
-                var lastWithEdgeType = PossibleModules.All(mod => mod.edgeConnections[j] != edgeType);
+                var edgeType = module.sockets[j];
+                var lastWithEdgeType = PossibleModules.All(mod => mod.sockets[j] != edgeType);
 
                 if (lastWithEdgeType)
                 {

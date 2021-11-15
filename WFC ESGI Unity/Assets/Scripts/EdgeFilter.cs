@@ -2,36 +2,51 @@
 {
     public class EdgeFilter
     {
-        private readonly Module.EdgeConnectionTypes filterType;
+        private readonly Socket filterType;
         /// <summary>
         /// Should the cells contains this type of edge
         /// </summary>
         private readonly bool isInclusive;
 
         private readonly Directions edgeDirection;
+
+        public delegate bool CheckModuleMatchFunction(Module module, int edge);
         
-        public EdgeFilter(Directions edgeDirection, Module.EdgeConnectionTypes filterType, bool isInclusive)
+        public EdgeFilter(Directions edgeDirection, Socket filterType, bool isInclusive)
         {
             this.edgeDirection = edgeDirection;
             this.filterType = filterType;
             this.isInclusive = isInclusive;
         }
         
-        public EdgeFilter(int dir, Module.EdgeConnectionTypes filterType, bool isInclusive)
+        public EdgeFilter(int dir, Socket filterType, bool isInclusive)
         {
             this.edgeDirection = ToEdgeDirection(dir);
             this.filterType = filterType;
             this.isInclusive = isInclusive;
         }
         
-        public bool CheckModule(Module module)
+        public bool CheckModule(Module module, CheckModuleMatchFunction matchEquality)
         {
             var edge = ((int)edgeDirection + 2) % 4;
-            var match = module.edgeConnections[edge] == filterType;
+            var match = matchEquality(module, edge);
 
             return isInclusive ? !match : match;
         }
+
+        public bool MatchEquality(Module module, int edge)
+        {
+            var match = module.sockets[edge] == filterType;
+            return match;
+        }
         
+        public bool MatchType(Module module, int edge)
+        {
+            var socket = module.sockets[edge];
+            var match = socket.GetType() == typeof(SocketBlock) || socket.GetType().IsSubclassOf(typeof(SocketBlock));
+            return match;
+        }
+
         public enum Directions
         {
             Bottom = 0,

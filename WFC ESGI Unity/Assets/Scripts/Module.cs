@@ -7,22 +7,12 @@ namespace ESGI.WFC
     public class Module : ScriptableObject
     {
         /// <summary>
-        /// Different edge connection types.
-        /// </summary>
-        public enum EdgeConnectionTypes
-        {
-            Block,
-            Open,
-        }
-        
-        /// <summary>
         /// The module`s game object.
         /// </summary>
         public GameObject modulePrefab;
         
-        [Serializable]
-        public class EdgeConnectionTypesNeighbours : Neighbours<EdgeConnectionTypes> { }
-        
-        public EdgeConnectionTypesNeighbours edgeConnections;
+
+        public Neighbours<Socket> sockets;
+
     }
 }

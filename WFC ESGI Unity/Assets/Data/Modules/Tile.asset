@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Tile
   m_EditorClassIdentifier: 
   modulePrefab: {fileID: 8618169410952061216, guid: 580aacb552d91e041b03fcc5b4f0af1c, type: 3}
+  sockets:
+    bottom: {fileID: 11400000, guid: ca337f39a769b0d4a8b605a8c3271ec3, type: 2}
+    right: {fileID: 11400000, guid: ca337f39a769b0d4a8b605a8c3271ec3, type: 2}
+    top: {fileID: 11400000, guid: ca337f39a769b0d4a8b605a8c3271ec3, type: 2}
+    left: {fileID: 11400000, guid: ca337f39a769b0d4a8b605a8c3271ec3, type: 2}
   edgeConnections:
     bottom: 0
     right: 0

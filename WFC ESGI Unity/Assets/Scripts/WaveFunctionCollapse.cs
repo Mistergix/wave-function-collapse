@@ -24,7 +24,7 @@ namespace ESGI.WFC
             Generate();
         }
 
-        [Button]
+        [Button, DisableInEditorMode]
         public void Generate()
         {
             RemoveGrid();
@@ -33,7 +33,7 @@ namespace ESGI.WFC
             var finalSeed = seed != -1 ? seed : Environment.TickCount;
             Random.InitState(finalSeed);
             
-            CreateHep();
+            CreateHeap();
             
             var stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -85,19 +85,22 @@ namespace ESGI.WFC
 
         private void BorderOnlyOnOutsideConstraint()
         {
-            var bottomFilter = new EdgeFilter(EdgeFilter.Directions.Top, Module.EdgeConnectionTypes.Block, true);
-            var topFilter = new EdgeFilter(EdgeFilter.Directions.Bottom , Module.EdgeConnectionTypes.Block, true);
-            var leftFilter = new EdgeFilter( EdgeFilter.Directions.Right , Module.EdgeConnectionTypes.Block, true);
-            var rightFilter = new EdgeFilter(EdgeFilter.Directions.Left, Module.EdgeConnectionTypes.Block, true);
+            var blockSocket = ScriptableObject.CreateInstance<SocketBlock>();
+            var bottomFilter = new EdgeFilter(EdgeFilter.Directions.Top, blockSocket, true);
+            var topFilter = new EdgeFilter(EdgeFilter.Directions.Bottom , blockSocket, true);
+            var leftFilter = new EdgeFilter( EdgeFilter.Directions.Right , blockSocket, true);
+            var rightFilter = new EdgeFilter(EdgeFilter.Directions.Left, blockSocket, true);
 
             // filter bottom and top cells for only border
             for (var i = 0; i < 2; i++)
             {
                 var z = i * (height - 1);
+                var filter = i == 0 ? bottomFilter : topFilter;
 
                 for (var x = 0; x < width; x++)
                 {
-                    cells[x, z].FilterCell(i == 0 ? bottomFilter : topFilter);
+
+                    cells[x, z].FilterCell(filter, filter.MatchType);
                 }
             }
 
@@ -106,9 +109,11 @@ namespace ESGI.WFC
             {
                 var x = i * (width - 1);
 
+                var filter = i == 0 ? leftFilter : rightFilter;
+
                 for (var z = 0; z < height; z++)
                 {
-                    cells[x, z].FilterCell(i == 0 ? leftFilter : rightFilter);
+                    cells[x, z].FilterCell(filter, filter.MatchType);
                 }
             }
         }
@@ -126,7 +131,7 @@ namespace ESGI.WFC
             goalCell.SetModule(goalModule);
         }
 
-        private void CreateHep()
+        private void CreateHeap()
         {
             OrderedCells = new Heap<Cell>(width * height);
             for (var i = 0; i < width; i++)

@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Tile Corner Square 180
   m_EditorClassIdentifier: 
   modulePrefab: {fileID: 396120298160162847, guid: a6af9386bb9ef304aa6464ccb390c310, type: 3}
+  sockets:
+    bottom: {fileID: 11400000, guid: ca337f39a769b0d4a8b605a8c3271ec3, type: 2}
+    right: {fileID: 11400000, guid: ca337f39a769b0d4a8b605a8c3271ec3, type: 2}
+    top: {fileID: 11400000, guid: c3c2a899b070c874b8e4d3df3426fa93, type: 2}
+    left: {fileID: 11400000, guid: c3c2a899b070c874b8e4d3df3426fa93, type: 2}
   edgeConnections:
     bottom: 0
     right: 0

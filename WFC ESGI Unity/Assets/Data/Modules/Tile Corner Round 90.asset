@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Tile Corner Round 90
   m_EditorClassIdentifier: 
   modulePrefab: {fileID: 4303325020089377437, guid: 0d110c5911a321f409cfb33db0b6feaa, type: 3}
-  edgeConnections:
-    bottom: 1
-    right: 0
-    top: 0
-    left: 1
+  sockets:
+    bottom: {fileID: 11400000, guid: c3c2a899b070c874b8e4d3df3426fa93, type: 2}
+    right: {fileID: 11400000, guid: ca337f39a769b0d4a8b605a8c3271ec3, type: 2}
+    top: {fileID: 11400000, guid: ca337f39a769b0d4a8b605a8c3271ec3, type: 2}
+    left: {fileID: 11400000, guid: c3c2a899b070c874b8e4d3df3426fa93, type: 2}
