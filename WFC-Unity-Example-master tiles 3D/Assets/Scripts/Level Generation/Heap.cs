@@ -134,9 +134,7 @@ namespace LevelGeneration
         {
             _items[itemA.HeapIndex] = itemB;
             _items[itemB.HeapIndex] = itemA;
-            var itemAIndex = itemA.HeapIndex;
-            itemA.HeapIndex = itemB.HeapIndex;
-            itemB.HeapIndex = itemAIndex;
+            (itemA.HeapIndex, itemB.HeapIndex) = (itemB.HeapIndex, itemA.HeapIndex);
         }
 
         #endregion
@@ -147,7 +145,7 @@ namespace LevelGeneration
     /// Interface for heap compatible types.
     /// </summary>
     /// <typeparam name="T">Type to store in the heap.</typeparam>
-    public interface IHeapItem<T> : IComparable<T>
+    public interface IHeapItem<in T> : IComparable<T>
     {
         /// <summary>
         /// Item index inside the heap.

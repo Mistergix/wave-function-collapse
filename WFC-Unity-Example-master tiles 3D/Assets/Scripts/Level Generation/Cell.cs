@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -46,9 +47,9 @@ namespace LevelGeneration
         public void PopulateCell()
         {
             // at the beginning every module is possible
-            for (var i = 0; i < levelGenerator.modules.Count; i++)
+            foreach (var module in levelGenerator.modules)
             {
-                possibleModules.Add(levelGenerator.modules[i]);
+                possibleModules.Add(module);
             }
         }
 
@@ -60,18 +61,14 @@ namespace LevelGeneration
         {
             if (possibleModules.Count == 1) return;
 
-            var removingModules = new List<Module>();
+            var removingModules = possibleModules.Where(filter.CheckModule).ToList();
 
             // filter possible modules list
-            for (var i = 0; i < possibleModules.Count; i++)
-            {
-                if (filter.CheckModule(possibleModules[i])) removingModules.Add(possibleModules[i]);
-            }
 
             // remove filtered modules
-            for (var i = 0; i < removingModules.Count; i++)
+            foreach (var module in removingModules)
             {
-                RemoveModule(removingModules[i]);
+                RemoveModule(module);
             }
         }
 
@@ -98,9 +95,9 @@ namespace LevelGeneration
                 var lastWithEdgeType = true;
 
                 // search in other possible modules for the same edge type
-                for (var i = 0; i < possibleModules.Count; i++)
+                foreach (var t in possibleModules)
                 {
-                    if (possibleModules[i].edgeConnections[j] == edgeType)
+                    if (t.edgeConnections[j] == edgeType)
                     {
                         lastWithEdgeType = false;
                         break;
