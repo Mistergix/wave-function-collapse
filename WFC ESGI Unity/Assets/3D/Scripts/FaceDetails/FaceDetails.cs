@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ESGI.WFC.ThreeDimensions
 {
@@ -7,7 +8,7 @@ namespace ESGI.WFC.ThreeDimensions
     {
         public bool walkable;
         public int connector;
-        public ModulePrototype[] excludedNeighbours;
+        public List<ModulePrototype> excludedNeighbours;
         public bool enforceWalkableNeighbours;
         public bool isOcclusionPortal;
         

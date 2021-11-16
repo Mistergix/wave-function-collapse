@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using UnityEngine;
 
 namespace ESGI.WFC.ThreeDimensions
 {
+    [Serializable]
     public class VerticalFaceDetails : FaceDetails
     {
         public bool invariant;

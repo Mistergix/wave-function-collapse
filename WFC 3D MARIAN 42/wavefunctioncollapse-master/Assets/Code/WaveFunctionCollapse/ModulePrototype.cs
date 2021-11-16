@@ -143,7 +143,7 @@ public class ModulePrototype : MonoBehaviour {
 #endif
 	
 	public bool CompareRotatedVariants(int r1, int r2) {
-		if (!(this.Faces[Orientations.UP] as VerticalFaceDetails).Invariant || !(this.Faces[Orientations.DOWN] as VerticalFaceDetails).Invariant) {
+		if (!((VerticalFaceDetails) this.Faces[Orientations.UP]).Invariant || !((VerticalFaceDetails) this.Faces[Orientations.DOWN]).Invariant) {
 			return false;
 		}
 
