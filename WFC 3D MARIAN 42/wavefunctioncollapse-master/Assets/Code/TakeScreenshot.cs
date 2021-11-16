@@ -38,7 +38,6 @@ public class TakeScreenshot : MonoBehaviour {
         }
 		var filename = this.getFilename();
 		System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(filename));
-		ScreenCapture.CaptureScreenshot(filename);
         Debug.Log("Saved screenshot: " + filename);
         this.Counter++;
     }
