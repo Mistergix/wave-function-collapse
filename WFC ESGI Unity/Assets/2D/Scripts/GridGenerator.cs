@@ -29,9 +29,9 @@ namespace ESGI.WFC
                 origin.z - height * scale.z / 2f + scale.z / 2
             );
 
-            for (int x = 0; x < width; x++)
+            for (var x = 0; x < width; x++)
             {
-                for (int z = 0; z < height; z++)
+                for (var z = 0; z < height; z++)
                 {
                     var curPos = new Vector3(bottomLeft.x + x * scale.x, bottomLeft.y, bottomLeft.z + z * scale.z);
                     var cell = Instantiate(cellPrefab, curPos, Quaternion.identity, gameObject.transform);
@@ -50,15 +50,15 @@ namespace ESGI.WFC
             if (x > 0)
             {
                 var leftCell = cells[x - 1, z];
-                cell.Neighbours[3] = leftCell;
-                leftCell.Neighbours[1] = cell;
+                cell.Neighbours.left = leftCell;
+                leftCell.Neighbours.right = cell;
             }
 
             if (z > 0)
             {
                 var bottomCell = cells[x, z - 1];
-                cell.Neighbours[0] = bottomCell;
-                bottomCell.Neighbours[2] = cell;
+                cell.Neighbours.bottom = bottomCell;
+                bottomCell.Neighbours.top = cell;
             }
         }
 

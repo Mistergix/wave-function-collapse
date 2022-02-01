@@ -3,12 +3,14 @@
     public class EdgeFilter
     {
         private readonly Socket filterType;
-        /// <summary>
-        /// Should the cells contains this type of edge
-        /// </summary>
+       
         private readonly bool isInclusive;
 
         private readonly Directions edgeDirection;
+        
+        /// <summary>
+        /// Should the cells contains this type of edge
+        /// </summary>
 
         public delegate bool CheckModuleMatchFunction(Module module, int edge);
         
@@ -21,7 +23,7 @@
         
         public EdgeFilter(int dir, Socket filterType, bool isInclusive)
         {
-            this.edgeDirection = ToEdgeDirection(dir);
+            edgeDirection = ToEdgeDirection(dir);
             this.filterType = filterType;
             this.isInclusive = isInclusive;
         }
@@ -40,7 +42,7 @@
             return match;
         }
         
-        public bool MatchType(Module module, int edge)
+        public static bool MatchType(Module module, int edge)
         {
             var socket = module.sockets[edge];
             var match = socket.GetType() == typeof(SocketBlock) || socket.GetType().IsSubclassOf(typeof(SocketBlock));
@@ -55,14 +57,14 @@
             Left = 3
         }
         
-        private EdgeFilter.Directions ToEdgeDirection(int i)
+        private static Directions ToEdgeDirection(int i)
         {
             return i switch
             {
-                0 => EdgeFilter.Directions.Bottom,
-                1 => EdgeFilter.Directions.Right,
-                2 => EdgeFilter.Directions.Top,
-                3 => EdgeFilter.Directions.Left,
+                0 => Directions.Bottom,
+                1 => Directions.Right,
+                2 => Directions.Top,
+                3 => Directions.Left,
                 _ => default
             };
         }

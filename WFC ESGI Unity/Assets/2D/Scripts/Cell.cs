@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace ESGI.WFC
 {
     public class Cell : MonoBehaviour, IHeapItem<Cell>
     {
-        public CellNeighbours Neighbours { get; set; }
+        public CellNeighbours Neighbours { get; private set; }
         
         public WaveFunctionCollapse WaveFunctionCollapse { get; set; }
         public bool IsFinal { get; set; }
-        public List<Module> PossibleModules { get; set; }
+        public List<Module> PossibleModules { get; private set; }
         public int HeapIndex { get; set; }
         public Module MainModule => PossibleModules[0];
         
@@ -43,22 +44,22 @@ namespace ESGI.WFC
             IsFinal = true;
         }
 
-        public void FilterCell(EdgeFilter filter)
+        public void FilterCell(EdgeFilter filter, EdgeFilter.CheckModuleMatchFunction matchFunction)
         {
             if(PossibleModules.Count == 1){return;}
 
-            var toRemove = PossibleModules.Where(module => filter.CheckModule(module, filter.MatchEquality)).ToList();
+            var toRemove = PossibleModules.Where(module => filter.CheckModule(module, matchFunction)).ToList();
             foreach (var module in toRemove)
             {
                 RemoveModule(module);
             }
         }
         
-        public void FilterCell(EdgeFilter filter, EdgeFilter.CheckModuleMatchFunction matchFunction)
+        private void FilterCell(EdgeFilter filter)
         {
             if(PossibleModules.Count == 1){return;}
 
-            var toRemove = PossibleModules.Where(module => filter.CheckModule(module, matchFunction)).ToList();
+            var toRemove = PossibleModules.Where(module => filter.CheckModule(module, filter.MatchEquality)).ToList();
             foreach (var module in toRemove)
             {
                 RemoveModule(module);
@@ -122,15 +123,13 @@ namespace ESGI.WFC
                 var edgeType = module.sockets[j];
                 var lastWithEdgeType = PossibleModules.All(mod => mod.sockets[j] != edgeType);
 
-                if (lastWithEdgeType)
-                {
-                    var edgeFilter = new EdgeFilter(j, edgeType, false);
-                    Neighbours[j].FilterCell(edgeFilter);
-                }
+                if (!lastWithEdgeType) {continue;}
+                var edgeFilter = new EdgeFilter(j, edgeType, false);
+                Neighbours[j].FilterCell(edgeFilter);
             }
         }
 
-        private bool HasNeighbour(Cell neighbour)
+        private static bool HasNeighbour(Object neighbour)
         {
             return neighbour != null;
         }

@@ -24,25 +24,6 @@ namespace ESGI.WFC
                     _ => default
                 };
             }
-
-            set
-            {
-                switch (index)
-                {
-                    case 0:
-                        bottom = value;
-                        break;
-                    case 1 :
-                        right = value;
-                        break;
-                    case 2 :
-                        top = value;
-                        break;
-                    case 3 :
-                        left = value;
-                        break;
-                }
-            }
         }
 
         public T GetNeighbour(int i)
