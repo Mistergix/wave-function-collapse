@@ -19,11 +19,7 @@ public class Slot {
 
 	public GameObject GameObject;
 
-	public bool Collapsed {
-		get {
-			return this.Module != null;
-		}
-	}
+	public bool Collapsed => this.Module != null;
 
 	public bool ConstructionComplete {
 		get {

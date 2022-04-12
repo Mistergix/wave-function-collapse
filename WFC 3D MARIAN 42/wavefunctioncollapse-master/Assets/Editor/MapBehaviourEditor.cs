@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using System.Linq;
 using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 [CustomEditor(typeof(MapBehaviour))]
 public class MapBehaviourEditor : Editor {
@@ -15,7 +16,7 @@ public class MapBehaviourEditor : Editor {
 		MapBehaviour mapBehaviour = (MapBehaviour)target;
 		if (GUILayout.Button("Clear")) {
 			mapBehaviour.Clear();
-			EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+			EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
 		}
 
 		GUILayout.BeginHorizontal();

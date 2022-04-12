@@ -2,17 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SocketOpen : MonoBehaviour
+[CreateAssetMenu(menuName = "WFC/Socket/Open")]
+public class SocketOpen : Socket
 {
-    // Start is called before the first frame update
-    void Start()
-    {
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

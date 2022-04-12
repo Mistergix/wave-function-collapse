@@ -81,7 +81,7 @@ namespace ESGI.WFC
         private void ApplyInitialConstraints()
         {
             PlaceStartAndGoalConstraint();
-            BorderOnlyOnOutsideConstraint();
+            //BorderOnlyOnOutsideConstraint();
         }
 
         private void BorderOnlyOnOutsideConstraint()

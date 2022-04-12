@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Module : MonoBehaviour
+[CreateAssetMenu(menuName = "WFC/2D/Module")]
+public class Module : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject modulePrefab;
+    public Neighbours<Socket> sockets;
 }

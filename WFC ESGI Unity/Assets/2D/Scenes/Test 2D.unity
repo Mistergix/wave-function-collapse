@@ -525,9 +525,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c6ad90bce4a4b45b8003077b01c462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 10
-  height: 10
-  cellPrefab: {fileID: 8853256824398372328, guid: de22af0cfac3d1e4890dfd570cc1a6c0, type: 3}
   modules:
   - {fileID: 11400000, guid: 82b78d520d1778143a8faded8d2731be, type: 2}
   - {fileID: 11400000, guid: 3788ad26d33351d4397fd8223549b2ac, type: 2}
@@ -567,3 +564,6 @@ MonoBehaviour:
   offsetMax: 4
   moveDurationMin: 0.75
   moveDurationMax: 1.25
+  width: 10
+  height: 10
+  cellPrefab: {fileID: 8853256824398372328, guid: de22af0cfac3d1e4890dfd570cc1a6c0, type: 3}

@@ -152,6 +152,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b9785696a8bb6f4e9e57599fc991ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  width: 10
+  height: 10
+  cellPrefab: {fileID: 2576695318335601826, guid: 1f525b052ef096b49a2b99aebe764266, type: 3}
+  modules:
+  - {fileID: 11400000, guid: f66f191f230b12048bf57bb48480a313, type: 2}
+  - {fileID: 11400000, guid: 53f3d0850b88a42469044e7b0ac14772, type: 2}
+  - {fileID: 11400000, guid: 95dd972ad511581448f3b146353cbd5a, type: 2}
+  - {fileID: 11400000, guid: fedb20a1b14093f4ebec0270f1d733c6, type: 2}
+  - {fileID: 11400000, guid: 88f026bf6cf4bac468e6d4c178421175, type: 2}
+  - {fileID: 11400000, guid: 8c4a42f7df7239c43838239e8a1beb6e, type: 2}
+  - {fileID: 11400000, guid: 802e1985fa7d44c4eb9ad0c277f8425d, type: 2}
+  - {fileID: 11400000, guid: 3ced92cbd3177134a906dba18f7aad9d, type: 2}
+  - {fileID: 11400000, guid: 076a6dd7aa5f24f4996242a72a16b00a, type: 2}
+  - {fileID: 11400000, guid: 47725bd72842f6149bbd07471b849baf, type: 2}
+  - {fileID: 11400000, guid: 7c21ef886adb8f94da3c6dc639fe12d5, type: 2}
+  - {fileID: 11400000, guid: 9e4d0cbfd232c6940b09616f0c4f5033, type: 2}
+  seed: -1
+  offsetMin: 2
+  offsetMax: 4
+  moveDurationMin: 0.75
+  moveDurationMax: 1.25
 --- !u!4 &131597647
 Transform:
   m_ObjectHideFlags: 0

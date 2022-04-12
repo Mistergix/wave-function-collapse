@@ -30,10 +30,7 @@ public class MapBehaviour : MonoBehaviour {
 	}
 
 	public void Clear() {
-		var children = new List<Transform>();
-		foreach (Transform child in this.transform) {
-			children.Add(child);
-		}
+		var children = this.transform.Cast<Transform>().ToList();
 		foreach (var child in children) {
 			GameObject.DestroyImmediate(child.gameObject);
 		}
