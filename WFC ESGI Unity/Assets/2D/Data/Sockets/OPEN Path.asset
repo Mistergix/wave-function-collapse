@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8e2920c6884113b95efa99caff781d, type: 3}
   m_Name: OPEN Path
   m_EditorClassIdentifier: 
-  isNullSocket: 0
-  symmetrical: 0
+  id: 2

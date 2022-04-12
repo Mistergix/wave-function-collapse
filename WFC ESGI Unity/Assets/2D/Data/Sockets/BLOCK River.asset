@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b2b7ec0c9d4ee5b8ca723feca4a57b, type: 3}
   m_Name: BLOCK River
   m_EditorClassIdentifier: 
-  isNullSocket: 0
-  symmetrical: 0
+  id: 1
