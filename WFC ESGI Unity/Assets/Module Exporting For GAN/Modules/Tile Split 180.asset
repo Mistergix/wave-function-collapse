@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94e52fe55779c784ea37a9e826ba7dc4, type: 3}
+  m_Name: Tile Split 180
+  m_EditorClassIdentifier: 
+  rotation: 180
+  mesh: {fileID: 6162401304737288215, guid: fff2e70b51cea5641bed5117f39acdf1, type: 3}
+  sockets:
+    bottom: {fileID: 11400000, guid: c3c2a899b070c874b8e4d3df3426fa93, type: 2}
+    right: {fileID: 11400000, guid: c3c2a899b070c874b8e4d3df3426fa93, type: 2}
+    top: {fileID: 11400000, guid: ca337f39a769b0d4a8b605a8c3271ec3, type: 2}
+    left: {fileID: 11400000, guid: c3c2a899b070c874b8e4d3df3426fa93, type: 2}
