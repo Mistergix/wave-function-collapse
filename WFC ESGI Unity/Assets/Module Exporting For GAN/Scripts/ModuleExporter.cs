@@ -65,10 +65,35 @@ namespace ESGI.WFC.Exporter
             }
             
             File.WriteAllText(Path.Combine(meshesFolder, $"{fileName}"), sb.ToString());*/
+
+            var mesh = CloneMesh(module);
             
-            MeshToOff(module.mesh, new StreamWriter(Path.Combine(meshesFolder, $"{fileName}")));
+            MeshToOff(mesh, new StreamWriter(Path.Combine(meshesFolder, $"{fileName}")));
         }
-        
+
+        private Mesh CloneMesh(ModuleGAN module)
+        {
+            var center =  Vector3.zero;//any V3 you want as the pivot point.
+            var newRotation = new Quaternion();
+            newRotation.eulerAngles = new Vector3(0,module.rotation,0);//the degrees the vertices are to be rotated, for example (0,90,0) 
+
+            var mesh = Instantiate(module.mesh);
+            
+            var newmesh = new Mesh();
+            newmesh.vertices = (Vector3[])mesh.vertices.Clone();
+            newmesh.triangles = (int[])mesh.triangles.Clone();
+            newmesh.uv = (Vector2[])mesh.uv.Clone();
+            newmesh.normals = (Vector3[])mesh.normals.Clone();
+            newmesh.colors = mesh.colors;
+            newmesh.tangents = mesh.tangents;
+            
+            for(int i = 0; i < newmesh.vertices.Length; i++) {//vertices being the array of vertices of your mesh
+                newmesh.vertices[i] = newRotation * (newmesh.vertices[i] - center) + center;
+            }
+
+            return newmesh;
+        }
+
         public static void MeshToOff(Mesh mesh, TextWriter off)
         {
             if (mesh.uv.Length != 0)
