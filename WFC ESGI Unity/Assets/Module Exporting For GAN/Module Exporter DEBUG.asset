@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modules:
   - {fileID: 11400000, guid: 828427edb91cc934c9141812775a47a2, type: 2}
+  - {fileID: 11400000, guid: a141a2f67d5883b489be8ea6d235a41d, type: 2}
   exportPath: C:/Users/nicol/Desktop/Projets/ESGI/Wave Function Collapse/Export For
     Gans

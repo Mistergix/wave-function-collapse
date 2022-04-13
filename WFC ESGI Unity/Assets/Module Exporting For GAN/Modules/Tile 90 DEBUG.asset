@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e52fe55779c784ea37a9e826ba7dc4, type: 3}
   m_Name: Tile 90 DEBUG
   m_EditorClassIdentifier: 
-  rotation: 0
+  rotation: 90
   mesh: {fileID: -4855243574250553854, guid: 082047e70d4a4d44b96524fd9349dd0f, type: 3}
   sockets:
     bottom: {fileID: 11400000, guid: ca337f39a769b0d4a8b605a8c3271ec3, type: 2}
