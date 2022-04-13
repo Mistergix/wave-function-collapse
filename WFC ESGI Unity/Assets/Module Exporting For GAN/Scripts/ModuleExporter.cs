@@ -66,9 +66,13 @@ namespace ESGI.WFC.Exporter
             
             File.WriteAllText(Path.Combine(meshesFolder, $"{fileName}"), sb.ToString());*/
 
+            Debug.Log($"{fileName}");
+            Debug.Log($"POS 0 BEFORE : {module.mesh.vertices[0].ToString("F3")}");
             var mesh = CloneMesh(module);
+            Debug.Log($"POS 0 AFTER : {mesh.vertices[0].ToString("F3")}");
             
             MeshToOff(mesh, new StreamWriter(Path.Combine(meshesFolder, $"{fileName}")));
+            Debug.Log("------------------------------");
         }
 
         private Mesh CloneMesh(ModuleGAN module)
@@ -80,16 +84,21 @@ namespace ESGI.WFC.Exporter
             var mesh = Instantiate(module.mesh);
             
             var newmesh = new Mesh();
-            newmesh.vertices = (Vector3[])mesh.vertices.Clone();
+            var vertices = (Vector3[]) mesh.vertices.Clone();
+
+            for(int i = 0; i < vertices.Length; i++) {//vertices being the array of vertices of your mesh
+                vertices[i] = newRotation * (vertices[i] - center) + center;
+            }
+
+            newmesh.SetVertices(vertices);
             newmesh.triangles = (int[])mesh.triangles.Clone();
             newmesh.uv = (Vector2[])mesh.uv.Clone();
             newmesh.normals = (Vector3[])mesh.normals.Clone();
             newmesh.colors = mesh.colors;
             newmesh.tangents = mesh.tangents;
+            newmesh.RecalculateBounds();
+            newmesh.RecalculateNormals();
             
-            for(int i = 0; i < newmesh.vertices.Length; i++) {//vertices being the array of vertices of your mesh
-                newmesh.vertices[i] = newRotation * (newmesh.vertices[i] - center) + center;
-            }
 
             return newmesh;
         }
