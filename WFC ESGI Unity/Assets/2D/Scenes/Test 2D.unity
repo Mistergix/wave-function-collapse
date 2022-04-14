@@ -555,6 +555,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0b53f38dc51b9d64eb06187537840134, type: 2}
   - {fileID: 11400000, guid: c173c80afd3bb2b40ac8b05266f1bd7e, type: 2}
   - {fileID: 11400000, guid: f1e04e9e72f7f434eab0a6632b649c15, type: 2}
+  - {fileID: 11400000, guid: 602c764db3c1b5446b288c634f879e25, type: 2}
+  - {fileID: 11400000, guid: 583ec41914ee5fa49b9c2ba6a0df958e, type: 2}
   startModule: {fileID: 11400000, guid: 82b78d520d1778143a8faded8d2731be, type: 2}
   goalModule: {fileID: 11400000, guid: 82b78d520d1778143a8faded8d2731be, type: 2}
   seed: -1
