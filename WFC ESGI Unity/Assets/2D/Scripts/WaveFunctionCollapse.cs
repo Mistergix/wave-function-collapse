@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using DG.Tweening;
+using ESGI.WFC.Exporter;
 using Random = UnityEngine.Random;
 
 namespace ESGI.WFC
@@ -14,13 +15,19 @@ namespace ESGI.WFC
         [Tooltip("If set to -1 a random seed will be selected for every level generation.")]
         public int seed;
 
+        public List<Socket> sockets;
+
         [SerializeField] private float offsetMin = 2;
         [SerializeField] private float offsetMax = 4;
         [SerializeField] private float moveDurationMin = 0.25f;
         [SerializeField] private float moveDurationMax = 0.75f;
 
         private Heap<Cell> OrderedCells { get; set; }
-        
+
+        private void Awake()
+        {
+            _gan = FindObjectOfType<GANInterface>();
+        }
 
         private void Start()
         {
@@ -39,7 +46,7 @@ namespace ESGI.WFC
             CreateHeap();
             
             
-            ApplyInitialConstraints();
+            //ApplyInitialConstraints();
             
             WaveFunctionCollapseRun();
             
@@ -53,8 +60,10 @@ namespace ESGI.WFC
             {
                 var t = cell.transform;
                 var offset = Vector3.down * Random.Range(offsetMin, offsetMax);
-                var go = Instantiate(cell.MainModule.modulePrefab, t.position + offset, Quaternion.identity, t);
-                go.transform.DOMove(t.position, Random.Range(moveDurationMin, moveDurationMax)).SetEase(Ease.OutBack);
+                cell.meshFilter.sharedMesh = cell.Mesh;
+                cell.meshFilter.transform.position = t.position + offset;
+                //var go = Instantiate(cell.MainModule.modulePrefab, t.position + offset, Quaternion.identity, t);
+                cell.meshFilter.transform.DOMove(t.position, Random.Range(moveDurationMin, moveDurationMax)).SetEase(Ease.OutBack);
             }
         }
 
@@ -63,16 +72,74 @@ namespace ESGI.WFC
             while (OrderedCells.Count > 0)
             {
                 var cell = OrderedCells.GetFirst();
-                if (cell.PossibleModules.Count == 1)
+                if (cell.HasMesh)
                 {
                     cell.IsFinal = true;
                     OrderedCells.RemoveFirst();
                 }
                 else
                 {
-                    cell.SetModule(cell.PossibleModules[Random.Range(0, cell.PossibleModules.Count)]);
+                    //cell.SetModule(cell.PossibleModules[Random.Range(0, cell.PossibleModules.Count)]);
+                    var neighbours = GetNeighbours(cell);
+                    var module = ScriptableObject.CreateInstance<Module>();
+                    module.sockets = new Neighbours<Socket>()
+                    {
+                        bottom = neighbours.bottom, top = neighbours.top, left = neighbours.left,
+                        right = neighbours.right
+                    };
+
+                    cell.MainModule = module;
+                    // TODO should be done by batch, not one by one
+                    cell.Mesh = _gan.GenerateNewMesh(module);
                 }
             }
+        }
+
+        private SocketNeighbours GetNeighbours(Cell cell)
+        {
+            var neighbour = new SocketNeighbours();
+            
+            if (cell.Neighbours.bottom && cell.Neighbours.bottom.HasMesh)
+            {
+                neighbour.bottom = cell.Neighbours.bottom.MainModule.sockets.top;
+            }
+            
+            if (cell.Neighbours.top && cell.Neighbours.top.HasMesh)
+            {
+                neighbour.top = cell.Neighbours.top.MainModule.sockets.bottom;
+            }
+            
+            if (cell.Neighbours.left && cell.Neighbours.left.HasMesh)
+            {
+                neighbour.left = cell.Neighbours.left.MainModule.sockets.right;
+            }
+            
+            if (cell.Neighbours.right && cell.Neighbours.right.HasMesh)
+            {
+                neighbour.right = cell.Neighbours.right.MainModule.sockets.left;
+            }
+
+            if (neighbour.bottom == null)
+            {
+                neighbour.bottom = sockets[Random.Range(0, sockets.Count)];
+            }
+            
+            if (neighbour.top == null)
+            {
+                neighbour.top = sockets[Random.Range(0, sockets.Count)];
+            }
+            
+            if (neighbour.left == null)
+            {
+                neighbour.left = sockets[Random.Range(0, sockets.Count)];
+            }
+            
+            if (neighbour.right == null)
+            {
+                neighbour.right = sockets[Random.Range(0, sockets.Count)];
+            }
+
+            return neighbour;
         }
 
         /// <summary>
@@ -80,7 +147,7 @@ namespace ESGI.WFC
         /// </summary>
         private void ApplyInitialConstraints()
         {
-            PlaceStartAndGoalConstraint();
+            //PlaceStartAndGoalConstraint();
             //BorderOnlyOnOutsideConstraint();
         }
 
@@ -166,6 +233,7 @@ namespace ESGI.WFC
         public Cell cellPrefab;
 
         private Cell[,] cells;
+        private GANInterface _gan;
 
         private void GenerateGrid(WaveFunctionCollapse wfc)
         {
@@ -226,4 +294,7 @@ namespace ESGI.WFC
             }
         }
     }
+
+    [Serializable]
+    public class SocketNeighbours : Neighbours<Socket> { }
 }

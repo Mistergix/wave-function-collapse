@@ -8,14 +8,18 @@ namespace ESGI.WFC
 {
     public class Cell : MonoBehaviour, IHeapItem<Cell>
     {
+        public MeshFilter meshFilter;
         public CellNeighbours Neighbours { get; private set; }
         
         public WaveFunctionCollapse WaveFunctionCollapse { get; set; }
         public bool IsFinal { get; set; }
         public List<Module> PossibleModules { get; private set; }
         public int HeapIndex { get; set; }
-        public Module MainModule => PossibleModules[0];
+        public Module MainModule { get; set; }
+        public bool HasMesh => Mesh != null;
         
+        public Mesh Mesh { get; set; }
+
         private void Awake()
         {
             PossibleModules = new List<Module>();

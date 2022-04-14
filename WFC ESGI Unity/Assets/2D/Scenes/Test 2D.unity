@@ -306,6 +306,49 @@ MonoBehaviour:
   optionalRotationMode: 2
   optionalScrambleMode: 0
   optionalString: 
+--- !u!1 &1245522735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1245522736}
+  - component: {fileID: 1245522737}
+  m_Layer: 0
+  m_Name: GANInterface
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1245522736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245522735}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1245522737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245522735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcfbae5f97549114d94088b2fe132a6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1373123775
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,6 +603,10 @@ MonoBehaviour:
   startModule: {fileID: 11400000, guid: 82b78d520d1778143a8faded8d2731be, type: 2}
   goalModule: {fileID: 11400000, guid: 82b78d520d1778143a8faded8d2731be, type: 2}
   seed: -1
+  sockets:
+  - {fileID: 11400000, guid: ca337f39a769b0d4a8b605a8c3271ec3, type: 2}
+  - {fileID: 11400000, guid: b2d4ed8a885de1e4ca9f0f63ab405e3a, type: 2}
+  - {fileID: 11400000, guid: c3c2a899b070c874b8e4d3df3426fa93, type: 2}
   offsetMin: 2
   offsetMax: 4
   moveDurationMin: 0.75
