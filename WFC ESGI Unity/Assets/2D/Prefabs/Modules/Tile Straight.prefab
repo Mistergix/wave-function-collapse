@@ -113,6 +113,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a4f11325afffb2f46ba7aef2ffb26a3c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 49fcacbac4a9f4445b90c655a38bfb0e, type: 2}
+    - target: {fileID: -7511558181221131132, guid: a4f11325afffb2f46ba7aef2ffb26a3c, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 864c6f9f3364e2b4cb30f55531cb77d8, type: 2}
+    - target: {fileID: -7511558181221131132, guid: a4f11325afffb2f46ba7aef2ffb26a3c, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 99b12ae039033864c89bb9882f801cdd, type: 2}
     - target: {fileID: 919132149155446097, guid: a4f11325afffb2f46ba7aef2ffb26a3c, type: 3}
       propertyPath: m_Name
       value: tile_straight

@@ -1,9 +1,24 @@
 fileFormatVersion: 2
-guid: ee04dc996a33e8140b64eddbe76df303
+guid: 65c21f1811967ea42afe83fbcf5d9d60
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: crystal
+    second: {fileID: 2100000, guid: 8f69e29398b50324d8d03559940ef791, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dirt
+    second: {fileID: 2100000, guid: cde50f67b0f8e8843a83122ff814ecec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: foliage
+    second: {fileID: 2100000, guid: e604e46a4fac62b4ebe7733e751f32b7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
